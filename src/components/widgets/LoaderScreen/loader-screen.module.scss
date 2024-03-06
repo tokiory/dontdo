@@ -1,0 +1,33 @@
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  z-index: 9999;
+}
+
+.loader {
+  width: 25vw;
+  aspect-ratio: 1;
+  animation: blink linear 5s alternate infinite;
+}
+
+@keyframes blink {
+  from {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(2deg);
+  }
+
+  66% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-2deg);
+  }
+}
