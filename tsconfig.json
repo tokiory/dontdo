@@ -13,7 +13,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "paths": {
+      "#ui/*": ["src/components/ui/*"],
+      "#ui": ["src/components/ui/index.ts"],
+      "#pages/*": ["src/components/pages/*"],
+      "#layouts/*": ["src/components/layouts/*"],
+      "@/*": ["src/*"]
+    },
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
