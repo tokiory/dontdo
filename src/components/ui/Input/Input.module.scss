@@ -1,0 +1,15 @@
+.input {
+  all: unset;
+  width: 100%;
+  display: block;
+  font-size: $font-size-md;
+}
+
+.wrapper {
+  display: flex;
+  cursor: text;
+  align-items: center;
+  border: 1px solid $border;
+  border-radius: 5px;
+  padding: 8px 12px;
+}

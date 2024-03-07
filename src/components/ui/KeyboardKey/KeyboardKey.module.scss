@@ -1,0 +1,9 @@
+.key {
+  border: 1px solid $border;
+  background-color: $gray-light;
+  display: inline-flex;
+  border-radius: 5px;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: $font-size-sm;
+}

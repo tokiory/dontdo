@@ -1,0 +1,19 @@
+.button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid $border;
+  padding: 8px 12px;
+
+  &:hover {
+    border-color: $border-hover;
+  }
+
+  &:active {
+    border-color: $border-active;
+  }
+}
