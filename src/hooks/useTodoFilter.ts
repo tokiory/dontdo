@@ -1,19 +1,7 @@
 import { TodoFilters, TodoItem } from "#types/todo.types.ts";
 import { useState } from "react";
 
-export const useTodoFilter = (todoList: TodoItem[]) => {
-  const [filters, setFilters] = useState<TodoFilters>({
-    sort: "desc",
-    done: "initial",
-  });
-
-  const handleFilterChange = (changedFilters: Partial<TodoFilters>) => {
-    setFilters({
-      ...filters,
-      ...changedFilters,
-    });
-  };
-
+const getFilteredTodoList = (todoList: TodoItem[], filters: TodoFilters) => {
   let filteredTodoList: TodoItem[];
 
   if (filters.sort === "asc") {
@@ -28,9 +16,25 @@ export const useTodoFilter = (todoList: TodoItem[]) => {
     filteredTodoList = filteredTodoList.filter((item) => item.isDone);
   }
 
+  return filteredTodoList;
+};
+
+export const useTodoFilter = (todoList: TodoItem[]) => {
+  const [filters, setFilters] = useState<TodoFilters>({
+    sort: "desc",
+    done: "initial",
+  });
+
+  const handleFilterChange = (changedFilters: Partial<TodoFilters>) => {
+    setFilters({
+      ...filters,
+      ...changedFilters,
+    });
+  };
+
   return {
     filters,
     handleFilterChange,
-    filteredTodoList,
+    filteredTodoList: getFilteredTodoList(todoList, filters),
   };
 };
