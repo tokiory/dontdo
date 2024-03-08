@@ -12,14 +12,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "baseUrl": ".",
     "jsx": "react-jsx",
     "paths": {
-      "#ui/*": ["src/components/ui/*"],
-      "#ui": ["src/components/ui/index.ts"],
-      "#pages/*": ["src/components/pages/*"],
-      "#layouts/*": ["src/components/layouts/*"],
-      "#types/*": ["src/types/*"],
-      "@/*": ["src/*"]
+      "#ui/*": ["./src/components/ui/*"],
+      "#ui": ["./src/components/ui/index.ts"],
+      "#pages/*": ["./src/components/pages/*"],
+      "#layouts/*": ["./src/components/layouts/*"],
+      "#types/*": ["./src/types/*"],
+      "@/*": ["./src/*"]
     },
     /* Linting */
     "strict": true,
