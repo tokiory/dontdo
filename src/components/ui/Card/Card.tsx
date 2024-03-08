@@ -1,13 +1,15 @@
 import { clsx } from "clsx";
-import { FC, PropsWithChildren } from "react";
+import { FC, HTMLProps, PropsWithChildren } from "react";
 import styles from "./Card.module.scss";
 
-interface CardProps {
-  className?: string;
-}
-export const Card: FC<PropsWithChildren<CardProps>> = ({
+export const Card: FC<PropsWithChildren<HTMLProps<HTMLDivElement>>> = ({
   children,
   className,
+  ...props
 }) => {
-  return <div className={clsx(styles.card, className)}>{children}</div>;
+  return (
+    <div {...props} className={clsx(styles.card, className)}>
+      {children}
+    </div>
+  );
 };

@@ -1,0 +1,28 @@
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-item {
+  width: fit-content;
+}
+
+.done-text {
+  position: relative;
+}
+
+.not-done {
+  text-decoration: line-through;
+}
+
+.done::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: $black;
+}

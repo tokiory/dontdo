@@ -12,4 +12,8 @@
   border: 1px solid $border;
   border-radius: 5px;
   padding: 8px 12px;
+
+  &:has(.input:focus) {
+    border-color: $border-focus;
+  }
 }

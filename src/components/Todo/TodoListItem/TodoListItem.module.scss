@@ -1,0 +1,42 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+
+  &:hover {
+    .control {
+      display: flex;
+    }
+  }
+}
+
+.information {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.control-item {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.editor {
+  all: unset;
+  line-height: 20px;
+  width: 100%;
+}
+
+.active {
+  border-color: $black;
+}

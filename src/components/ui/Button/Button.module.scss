@@ -9,6 +9,10 @@
   border: 1px solid $border;
   padding: 8px 12px;
 
+  &:focus {
+    border-color: $border-focus;
+  }
+
   &:hover {
     border-color: $border-hover;
   }

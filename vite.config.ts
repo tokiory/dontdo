@@ -15,6 +15,7 @@ export default defineConfig({
       "#ui": resolve("./src/components/ui"),
       "#pages": resolve("./src/pages"),
       "#layouts": resolve("./src/layouts"),
+      "#types": resolve("./src/types"),
     },
   },
   plugins: [react()],

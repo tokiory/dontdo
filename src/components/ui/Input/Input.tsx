@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import {
   ChangeEventHandler,
   forwardRef,
@@ -16,7 +17,7 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ value, onChange, postSlot, preSlot, ...props }, ref) => {
+  ({ value, onChange, postSlot, preSlot, className, ...props }, ref) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const actualRef = (ref || inputRef) as MutableRefObject<HTMLInputElement>;
 
@@ -27,7 +28,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <div onClick={handleFocus} className={styles.wrapper}>
+      <div onClick={handleFocus} className={clsx(styles.wrapper, className)}>
         {preSlot}
         <input
           ref={actualRef}

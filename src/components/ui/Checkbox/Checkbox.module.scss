@@ -1,0 +1,29 @@
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 16px;
+  aspect-ratio: 1;
+  border: 1px solid $border;
+  border-radius: 4px;
+
+  &:hover {
+    border-color: $border-hover;
+  }
+
+  &:has(.native-checkbox:focus) {
+    border-color: $border-focus;
+  }
+}
+
+/* taken from https://css-tricks.com/inclusively-hidden/ */
+.native-checkbox {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

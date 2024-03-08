@@ -1,13 +1,7 @@
 import { Input } from "#ui";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
-import {
-  ChangeEventHandler,
-  FC,
-  KeyboardEventHandler,
-  useRef,
-  useState,
-} from "react";
+import { ChangeEventHandler, FC, KeyboardEventHandler, useState } from "react";
 import styles from "./TodoInput.module.scss";
 
 interface TodoInputProps {
@@ -27,6 +21,10 @@ export const TodoInput: FC<TodoInputProps> = ({
   };
 
   const handleAdd = () => {
+    if (!todoText.trim()) {
+      setTodoText("");
+      return;
+    }
     onAdd(todoText);
     setTodoText("");
   };
