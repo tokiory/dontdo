@@ -6,16 +6,33 @@ import {
   TodoList,
   TodoListItem,
 } from "@/components/Todo";
+import { TODO_LIST_KEY } from "@/data/localStorage.ts";
 import { useTodoFilter } from "@/hooks/useTodoFilter.ts";
 import { todoReducer } from "@/reducers/todoReducer.ts";
 import { Icon } from "@iconify/react";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import styles from "./HomePage.module.scss";
 
 export const HomePage = () => {
-  const [todoList, dispatchTodoList] = useReducer(todoReducer, []);
+  const [todoList, dispatchTodoList] = useReducer(
+    todoReducer,
+    [],
+    (initial) => {
+      try {
+        return JSON.parse(
+          localStorage.getItem(TODO_LIST_KEY) || JSON.stringify(initial),
+        );
+      } catch {
+        return initial;
+      }
+    },
+  );
   const { filters, filteredTodoList, handleFilterChange } =
     useTodoFilter(todoList);
+
+  useEffect(() => {
+    localStorage.setItem(TODO_LIST_KEY, JSON.stringify(todoList));
+  }, [todoList]);
 
   return (
     <div className={styles.page}>
