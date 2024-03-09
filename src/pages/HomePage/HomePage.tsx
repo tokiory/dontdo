@@ -57,7 +57,7 @@ export const HomePage = () => {
   useEffect(() => {
     const onGlobalKeydown = (event: globalThis.KeyboardEvent) => {
       if (
-        event.key === "f" &&
+        event.code === "KeyF" &&
         event.shiftKey &&
         (event.ctrlKey || event.metaKey)
       ) {
