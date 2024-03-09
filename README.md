@@ -37,6 +37,7 @@ Just press `Ctrl + Shift + F` and search for tasks throughout the list. To exit 
 - **"How to close search?**": Just press `Ctrl + Shift + F` *or* `Escape` *or* press `Backspace` until you completely delete your query;
 - **"How to search links?**: Type `@link=<your_link>` to search for specific link, or just `@link` if you want to see all items with links;
 - **"How to search tags?**: Type `@tag` to see all items with tags, `@tag=<your_tag>` *or* `#<your_tag>` to search for items with specific tag;
+- **"How to limit search results?"**: Type `@limit=<amount_of_results>` for limiting results;
 
 ## <img height="18" src="https://api.iconify.design/gravity-ui:layers-3-diagonal.svg" /> Sync
 Come up with plans for today in the application or use a telegram bot.
