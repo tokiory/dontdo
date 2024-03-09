@@ -44,8 +44,10 @@ export const HomePage = () => {
   const { filters, filteredTodoList, handleFilterChange } =
     useTodoFilter(todoList);
 
-  const searchedList = query
-    ? filteredTodoList.filter((item) => item.text.toLowerCase().includes(query))
+  const searchedList = query.trim()
+    ? filteredTodoList.filter((item) =>
+        item.text.toLowerCase().includes(query.trim()),
+      )
     : filteredTodoList;
 
   // Serialize data to localStorage
