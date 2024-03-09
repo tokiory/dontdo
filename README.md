@@ -10,13 +10,6 @@
 - Have you noticed that you spend more time writing plans than actually doing them?
 - Did you have a list of links to read, did you forget about them?
 
-## Write as quickly, as you think
-"Don't do" will autocomplete your sentences to provide smooth experience, when you're writing your plans.
-
-It won't stop you from writing, you just need to press "Tab" when you see the desired option for autocompletion.
-
-[[Autocomplete GIF]]
-
 ## Reminders
 "Don't do" use fast syntax for activating reminders.
 
@@ -32,3 +25,10 @@ i30m - In 30 minutes
 ## Sync
 Come up with plans for today in the application or use a telegram bot.
 Your plans are always with you.
+
+## Write as quickly, as you think [WIP]
+"Don't do" will autocomplete your sentences to provide smooth experience, when you're writing your plans.
+
+It won't stop you from writing, you just need to press "Tab" when you see the desired option for autocompletion.
+
+[[Autocomplete GIF]]
