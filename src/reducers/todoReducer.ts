@@ -1,4 +1,4 @@
-import { TodoItem } from "#types/todo.types.ts";
+import { TodoItem, TodoItemMeta } from "#types/todo.types.ts";
 import { createTodoId } from "@/utils/todo.ts";
 
 interface TodoActionDelete {
@@ -9,12 +9,14 @@ interface TodoActionDelete {
 interface TodoActionAdd {
   type: "add";
   text: TodoItem["text"];
+  meta: TodoItemMeta;
 }
 
 interface TodoActionEdit {
   type: "edit";
   id: TodoItem["id"];
   text: TodoItem["text"];
+  meta: TodoItemMeta;
 }
 
 interface TodoActionCheck {
@@ -37,12 +39,13 @@ export const todoReducer = (state: TodoState, action: TodoAction) => {
       return state.filter((todo) => todo.id !== id);
     }
     case "edit": {
-      const { id, text } = action;
+      const { id, text, meta } = action;
       return state.map((todo) => {
         if (todo.id === id) {
           return {
             ...todo,
             text,
+            meta,
           };
         }
         return todo;
@@ -61,12 +64,13 @@ export const todoReducer = (state: TodoState, action: TodoAction) => {
       });
     }
     case "add": {
-      const { text } = action;
+      const { text, meta } = action;
       return [
         ...state,
         {
           id: createTodoId(),
           text,
+          meta,
           isDone: false,
         },
       ];

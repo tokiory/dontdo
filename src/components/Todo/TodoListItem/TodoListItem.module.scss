@@ -1,9 +1,5 @@
 .item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 8px;
-
   &:hover {
     .control {
       display: flex;
@@ -36,6 +32,16 @@
   all: unset;
   line-height: 20px;
   width: 100%;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-list {
+  margin-top: 6px;
 }
 
 .active {

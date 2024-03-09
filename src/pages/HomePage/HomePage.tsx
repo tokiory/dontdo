@@ -85,7 +85,9 @@ export const HomePage = () => {
             <TodoSearch autoFocus value={query} onChange={handleSearchInput} />
           ) : (
             <TodoInput
-              onAdd={(text) => dispatchTodoList({ type: "add", text })}
+              onAdd={(text, meta) =>
+                dispatchTodoList({ type: "add", text, meta })
+              }
               autoFocus
             />
           )}
@@ -104,8 +106,8 @@ export const HomePage = () => {
                 onCheck={(id, state) =>
                   dispatchTodoList({ type: "check", id, isDone: state })
                 }
-                onEdit={(id, text) =>
-                  dispatchTodoList({ type: "edit", id, text })
+                onEdit={(id, text, meta) =>
+                  dispatchTodoList({ type: "edit", id, text, meta })
                 }
                 onDelete={(id) => dispatchTodoList({ type: "delete", id })}
                 key={item.id}

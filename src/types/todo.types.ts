@@ -2,7 +2,7 @@ export interface TodoItem {
   id: string;
   text: string;
   isDone: boolean;
-  meta?: TodoItemMeta;
+  meta: TodoItemMeta;
 }
 
 export interface TodoTag {
@@ -11,7 +11,7 @@ export interface TodoTag {
 }
 
 export interface TodoItemMeta {
-  notification: Date;
+  notification: Date | null;
   tags: TodoTag[];
 }
 
