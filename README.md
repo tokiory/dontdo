@@ -13,6 +13,10 @@
 ## <img height="18" src="https://api.iconify.design/gravity-ui:hashtag.svg" /> Tags
 No directories or groups. Use a convenient and simple tagging system to quickly navigate among your tasks. Simply enter #tag_name to create a new tag.
 
+### tl;dr
+- **"How to create tag?"**: Just type a hashtag with word and press space;
+- **"How to edit tags in created item?"**: Double-click on the item and erase, add, modify tags. They will be in the end of the item;
+
 ## <img height="18" src="https://api.iconify.design/gravity-ui:clock.svg" /> Reminders
 "Don't do" use fast syntax for activating reminders.
 
