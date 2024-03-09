@@ -10,7 +10,10 @@
 - Have you noticed that you spend more time writing plans than actually doing them?
 - Did you have a list of links to read, did you forget about them?
 
-## Reminders
+## <img height="18" src="https://api.iconify.design/gravity-ui:hashtag.svg" /> Tags
+No directories or groups. Use a convenient and simple tagging system to quickly navigate among your tasks. Simply enter #tag_name to create a new tag.
+
+## <img height="18" src="https://api.iconify.design/gravity-ui:clock.svg" /> Reminders
 "Don't do" use fast syntax for activating reminders.
 
 For example:
@@ -22,11 +25,14 @@ i2h - In 2 hours
 i30m - In 30 minutes
 ```
 
-## Sync
+## <img height="18" src="https://api.iconify.design/gravity-ui:chevrons-up.svg" /> Fast Search
+Just press `Ctrl + Shift + F` and search for tasks throughout the list. To exit this mode, you can press the same key combination or `Escape`.
+
+## <img height="18" src="https://api.iconify.design/gravity-ui:layers-3-diagonal.svg" /> Sync
 Come up with plans for today in the application or use a telegram bot.
 Your plans are always with you.
 
-## Write as quickly, as you think [WIP]
+## <img height="18" src="https://api.iconify.design/gravity-ui:curly-brackets-function.svg" /> Write as quickly as you think [WIP]
 "Don't do" will autocomplete your sentences to provide smooth experience, when you're writing your plans.
 
 It won't stop you from writing, you just need to press "Tab" when you see the desired option for autocompletion.
