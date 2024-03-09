@@ -1,3 +1,4 @@
+import { TodoItemMeta } from "#types/todo.types.ts";
 import { Input } from "#ui";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
@@ -16,6 +17,7 @@ export const TodoInput: FC<TodoInputProps> = ({
   className,
 }) => {
   const [todoText, setTodoText] = useState("");
+  const [meta, setMeta] = useState<TodoItemMeta | null>(null);
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setTodoText(event.target.value);
   };
