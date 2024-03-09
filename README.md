@@ -32,6 +32,12 @@ i30m - In 30 minutes
 ## <img height="18" src="https://api.iconify.design/gravity-ui:chevrons-up.svg" /> Fast Search
 Just press `Ctrl + Shift + F` and search for tasks throughout the list. To exit this mode, you can press the same key combination or `Escape`.
 
+### tl;dr
+- **"How to open search?**": Just press `Ctrl + Shift + F`;
+- **"How to close search?**": Just press `Ctrl + Shift + F` *or* `Escape` *or* press `Backspace` until you completely delete your query;
+- **"How to search links?**: Type `@link=<your_link>` to search for specific link, or just `@link` if you want to see all items with links;
+- **"How to search tags?**: Type `@tag` to see all items with tags, `@tag=<your_tag>` *or* `#<your_tag>` to search for items with specific tag;
+
 ## <img height="18" src="https://api.iconify.design/gravity-ui:layers-3-diagonal.svg" /> Sync
 Come up with plans for today in the application or use a telegram bot.
 Your plans are always with you.
