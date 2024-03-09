@@ -75,11 +75,13 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           </button>
         </div>
       </div>
-      <TodoTagList className={styles.tagList}>
-        {meta.tags.map((tag) => (
-          <Tag {...tag} key={tag.id} />
-        ))}
-      </TodoTagList>
+      {meta.tags.length > 0 && (
+        <TodoTagList className={styles.tagList}>
+          {meta.tags.map((tag) => (
+            <Tag {...tag} key={tag.id} />
+          ))}
+        </TodoTagList>
+      )}
     </Card>
   );
 };
