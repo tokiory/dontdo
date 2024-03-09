@@ -2,6 +2,7 @@
   all: unset;
   width: 100%;
   display: block;
+  line-height: 20px;
   font-size: $font-size-md;
 }
 
@@ -12,6 +13,7 @@
   border: 1px solid $border;
   border-radius: 5px;
   padding: 8px 12px;
+  gap: 4px;
 
   &:has(.input:focus) {
     border-color: $border-focus;

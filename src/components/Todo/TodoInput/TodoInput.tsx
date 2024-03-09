@@ -43,12 +43,9 @@ export const TodoInput: FC<TodoInputProps> = ({
       onChange={handleChange}
       autoFocus={autoFocus}
       postSlot={
-        <Icon
-          onClick={handleAdd}
-          className={styles.addIcon}
-          fontSize={22}
-          icon="gravity-ui:plus"
-        />
+        <button className={styles.addIcon}>
+          <Icon onClick={handleAdd} icon="gravity-ui:plus" />
+        </button>
       }
     />
   );
