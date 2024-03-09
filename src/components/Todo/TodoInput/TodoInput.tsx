@@ -1,7 +1,7 @@
 import { TodoItemMeta } from "#types/todo.types.ts";
 import { Input, Tag } from "#ui";
 import { TodoTagList } from "@/components/Todo";
-import { useTagParser } from "@/hooks/useTagParser.ts";
+import { useTodoItemMeta } from "@/hooks/useTodoItemMeta.ts";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
 import { ChangeEventHandler, FC, KeyboardEventHandler, useState } from "react";
@@ -13,48 +13,28 @@ interface TodoInputProps {
   className?: string;
 }
 
-const INITIAL_META: TodoItemMeta = Object.freeze({
-  tags: [],
-  notification: null,
-});
-
 export const TodoInput: FC<TodoInputProps> = ({
   onAdd,
   autoFocus,
   className,
 }) => {
   const [todoText, setTodoText] = useState("");
-  const [meta, setMeta] = useState<TodoItemMeta>(INITIAL_META);
-  const { discoverTags, transfromTokenToTag, clearTags } = useTagParser();
-
-  const sanitizeText = (value: string) => {
-    const sanitizedText = clearTags(value);
-    return sanitizedText;
-  };
+  const { meta, clearMeta, handleTagParsing, getSanitizedText } =
+    useTodoItemMeta();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const tagTokens = discoverTags(event.target.value);
-    const tags = tagTokens.map((token) => transfromTokenToTag(token));
-    const uniqueTags = tags.filter(
-      (item, idx, arr) => arr.findIndex((i) => i.name === item.name) === idx,
-    );
-
-    setMeta((meta) => ({
-      ...meta,
-      tags: uniqueTags,
-    }));
-
+    handleTagParsing(event.target.value);
     setTodoText(event.target.value);
   };
 
   const handleAdd = () => {
-    const sanitizedText = sanitizeText(todoText).trim();
+    const sanitizedText = getSanitizedText(todoText).trim();
     if (sanitizedText) {
       onAdd(sanitizedText, meta);
     }
 
     setTodoText("");
-    setMeta(INITIAL_META);
+    clearMeta();
   };
 
   const handleEnter: KeyboardEventHandler<HTMLInputElement> = (event) => {
