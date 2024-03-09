@@ -1,6 +1,8 @@
 import { Card, Checkbox, Tag, Text } from "#ui";
 import { TodoItem, TodoItemMeta } from "#types/todo.types";
 import { TodoTagList } from "@/components/Todo";
+import { useTodoInput } from "@/hooks/useTodoInput.ts";
+import { useTodoMeta } from "@/hooks/useTodoMeta.ts";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
 import { ChangeEventHandler, FC, KeyboardEventHandler, useState } from "react";
@@ -22,6 +24,8 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   meta,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { setMeta: setEditingMeta, getTextWithMeta } = useTodoMeta();
+  const { getSanitizedText, getParsedTags } = useTodoInput();
   const handleCheck: ChangeEventHandler<HTMLInputElement> = (event) => {
     onCheck(id, event.target.checked);
   };
@@ -31,7 +35,21 @@ export const TodoListItem: FC<TodoListItemProps> = ({
   };
 
   const handleCardDoubleClick = () => {
+    setEditingMeta(meta);
     setIsEditing(true);
+  };
+
+  const handleEdit = (value: string) => {
+    const tags = getParsedTags(value);
+    const editedMeta = {
+      ...meta,
+      tags,
+    };
+    setEditingMeta(editedMeta);
+
+    const sanitizedText = getSanitizedText(value).trim();
+    onEdit(id, sanitizedText, editedMeta);
+    // onEdit(id, value, meta);
   };
 
   const handleEditKeydown: KeyboardEventHandler<HTMLInputElement> = (event) => {
@@ -45,7 +63,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
       const input = event.target as HTMLInputElement;
       input.blur();
       setIsEditing(false);
-      onEdit(id, input.value, meta);
+      handleEdit(input.value);
     }
   };
 
@@ -63,7 +81,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
               autoFocus
               onKeyDown={handleEditKeydown}
               onBlur={() => setIsEditing(false)}
-              defaultValue={text}
+              defaultValue={getTextWithMeta(text)}
             />
           ) : (
             <Text className={styles.text}>{text}</Text>
@@ -75,7 +93,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
           </button>
         </div>
       </div>
-      {meta.tags.length > 0 && (
+      {meta.tags.length > 0 && !isEditing && (
         <TodoTagList className={styles.tagList}>
           {meta.tags.map((tag) => (
             <Tag {...tag} key={tag.id} />

@@ -38,6 +38,6 @@ const clearTags = (value: string): string => {
   return value.replace(tagRegex, "");
 };
 
-export const useTagParser = () => {
+export const useInputTagParser = () => {
   return { discoverTags, parseTags, clearTags, transfromTokenToTag };
 };

@@ -1,7 +1,8 @@
 import { TodoItemMeta } from "#types/todo.types.ts";
 import { Input, Tag } from "#ui";
 import { TodoTagList } from "@/components/Todo";
-import { useTodoItemMeta } from "@/hooks/useTodoItemMeta.ts";
+import { useTodoInput } from "@/hooks/useTodoInput.ts";
+import { useTodoMeta } from "@/hooks/useTodoMeta.ts";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
 import { ChangeEventHandler, FC, KeyboardEventHandler, useState } from "react";
@@ -19,11 +20,11 @@ export const TodoInput: FC<TodoInputProps> = ({
   className,
 }) => {
   const [todoText, setTodoText] = useState("");
-  const { meta, clearMeta, handleTagParsing, getSanitizedText } =
-    useTodoItemMeta();
+  const { meta, clearMeta, updateTags } = useTodoMeta();
+  const { getSanitizedText, getParsedTags } = useTodoInput();
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    handleTagParsing(event.target.value);
+    updateTags(getParsedTags(event.target.value));
     setTodoText(event.target.value);
   };
 
