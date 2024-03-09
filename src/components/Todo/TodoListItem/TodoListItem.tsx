@@ -5,7 +5,13 @@ import { useTodoInput } from "@/hooks/useTodoInput.ts";
 import { useTodoMeta } from "@/hooks/useTodoMeta.ts";
 import { Icon } from "@iconify/react";
 import { clsx } from "clsx";
-import { ChangeEventHandler, FC, KeyboardEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  FC,
+  FocusEventHandler,
+  KeyboardEventHandler,
+  useState,
+} from "react";
 import styles from "./TodoListItem.module.scss";
 
 interface TodoListItemProps extends TodoItem {
@@ -52,19 +58,29 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     // onEdit(id, value, meta);
   };
 
-  const handleEditKeydown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+  const handleEditKeydown: KeyboardEventHandler<HTMLTextAreaElement> = (
+    event,
+  ) => {
     if (event.key === "Escape") {
-      const input = event.target as HTMLInputElement;
+      const input = event.target as HTMLTextAreaElement;
       input.blur();
       setIsEditing(false);
     }
 
     if (event.key === "Enter") {
-      const input = event.target as HTMLInputElement;
+      const input = event.target as HTMLTextAreaElement;
       input.blur();
       setIsEditing(false);
       handleEdit(input.value);
     }
+  };
+
+  const handleEditFocus: FocusEventHandler = (event) => {
+    const textareaElement = event.target as HTMLTextAreaElement;
+    textareaElement.setSelectionRange(
+      textareaElement.value.length,
+      textareaElement.value.length,
+    );
   };
 
   return (
@@ -76,9 +92,10 @@ export const TodoListItem: FC<TodoListItemProps> = ({
         <div className={styles.information}>
           <Checkbox checked={isDone} onChange={handleCheck} />
           {isEditing ? (
-            <input
+            <textarea
               className={styles.editor}
               autoFocus
+              onFocus={handleEditFocus}
               onKeyDown={handleEditKeydown}
               onBlur={() => setIsEditing(false)}
               defaultValue={getTextWithMeta(text)}
