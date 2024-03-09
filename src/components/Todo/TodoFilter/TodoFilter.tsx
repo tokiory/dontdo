@@ -7,12 +7,14 @@ import styles from "./TodoFilter.module.scss";
 
 interface TodoFilterProps extends TodoFilters {
   onChange: (filters: Partial<TodoFilters>) => void;
+  className?: string;
 }
 
 export const TodoFilter: FC<TodoFilterProps> = ({
   sort = "desc",
   done = false,
   onChange,
+  className,
 }) => {
   const sortButtonIcon =
     sort === "desc"
@@ -45,7 +47,7 @@ export const TodoFilter: FC<TodoFilterProps> = ({
   };
 
   return (
-    <div className={styles.filter}>
+    <div className={clsx(styles.filter, className)}>
       {/* Sort */}
       <Button onClick={handleSort} className={styles.filterItem}>
         <Text>Сортировка:&nbsp;</Text>

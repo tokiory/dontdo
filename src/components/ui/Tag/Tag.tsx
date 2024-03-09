@@ -6,11 +6,12 @@ import { Text } from "#ui";
 
 interface TagProps extends TodoTag {
   className?: string;
+  onClick?: (tag: TodoTag) => void;
 }
-export const Tag: FC<TagProps> = ({ className, name }) => {
+export const Tag: FC<TagProps> = ({ className, name, id, onClick }) => {
   return (
-    <div className={clsx(styles.tag, className)}>
-      <Text className={styles.text}>{name}</Text>
+    <div className={clsx(styles.tag, onClick && styles.clickable, className)}>
+      <Text onClick={() => onClick?.({ name, id })}>{name}</Text>
     </div>
   );
 };

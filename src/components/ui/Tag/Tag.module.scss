@@ -3,8 +3,9 @@
   background-color: $gray-light;
   border: 1px solid $border;
   border-radius: 4px;
+  user-select: none;
 }
 
-.text {
-  font-weight: 500;
+.clickable {
+  cursor: pointer;
 }
