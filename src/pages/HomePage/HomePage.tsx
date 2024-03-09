@@ -64,7 +64,10 @@ export const HomePage = () => {
         toggleSearch();
       }
 
-      if (isSearching && event.key === "Escape") {
+      if (
+        isSearching &&
+        (event.key === "Escape" || (event.key === "Backspace" && query === ""))
+      ) {
         toggleSearch();
       }
     };
@@ -74,7 +77,7 @@ export const HomePage = () => {
     return () => {
       removeEventListener("keydown", onGlobalKeydown);
     };
-  }, [toggleSearch, isSearching]);
+  }, [toggleSearch, isSearching, query]);
 
   return (
     <div className={styles.page}>
