@@ -41,18 +41,16 @@ export const HomePage = () => {
     },
   );
 
-  // TODO: Make a redux store with all tags, and rework logic of creating, editing, and deleting tags
-  const tagList = todoList
-    .map((item) => item.meta.tags)
-    .flat()
-    .filter(
-      (item, index, arr) =>
-        arr.findIndex((tag) => tag.name === item.name) === index,
-    );
-
   const { filters, filteredTodoList, handleFilterChange } =
     useTodoFilter(todoList);
 
+  const handleDeleteDone = () => {
+    todoList
+      .filter((item) => item.isDone)
+      .forEach(({ id }) => {
+        dispatchTodoList({ type: "delete", id });
+      });
+  };
   const searchedList = query.trim()
     ? filteredTodoList.filter(
         (item) =>
@@ -97,7 +95,8 @@ export const HomePage = () => {
       <div className={styles.wrapper}>
         <TodoFilter
           {...filters}
-          tagList={tagList}
+          todoList={todoList}
+          onDeleteDone={handleDeleteDone}
           className={styles.filters}
           onChange={handleFilterChange}
         />
