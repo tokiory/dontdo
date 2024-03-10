@@ -1,5 +1,5 @@
 import { TodoFilters, TodoItem } from "#types/todo.types.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const getFilteredTodoList = (todoList: TodoItem[], filters: TodoFilters) => {
   let filteredTodoList: TodoItem[];
@@ -27,11 +27,18 @@ const getFilteredTodoList = (todoList: TodoItem[], filters: TodoFilters) => {
   return filteredTodoList;
 };
 
+const INITIAL_FILTER_STATE: TodoFilters = {
+  sort: "desc",
+  done: "initial",
+  tags: [],
+};
+
+const FILTER_SESSION_STORAGE_KEY = "todo-filters";
+
 export const useTodoFilter = (todoList: TodoItem[]) => {
-  const [filters, setFilters] = useState<TodoFilters>({
-    sort: "desc",
-    done: "initial",
-    tags: [],
+  const [filters, setFilters] = useState<TodoFilters>(() => {
+    const previousFilters = sessionStorage.getItem(FILTER_SESSION_STORAGE_KEY);
+    return previousFilters ? JSON.parse(previousFilters) : INITIAL_FILTER_STATE;
   });
 
   const handleFilterChange = (changedFilters: Partial<TodoFilters>) => {
@@ -40,6 +47,10 @@ export const useTodoFilter = (todoList: TodoItem[]) => {
       ...changedFilters,
     });
   };
+
+  useEffect(() => {
+    sessionStorage.setItem(FILTER_SESSION_STORAGE_KEY, JSON.stringify(filters));
+  }, [filters]);
 
   return {
     filters,

@@ -33,13 +33,16 @@ export const FilterTodoTag: FC<FilterTodoTag> = ({
   return (
     <TodoTagList className={clsx(styles.tags, className)}>
       {tags.map((tag) => (
-        <button onClick={() => onTagSelect(tag)} className={styles.tagButton}>
+        <button
+          key={tag.id}
+          onClick={() => onTagSelect(tag)}
+          className={styles.tagButton}
+        >
           <Tag
             className={clsx(
               styles.tag,
               activeTagsIndices.includes(tag.id) && styles.activeTag,
             )}
-            key={tag.id}
             {...tag}
           />
         </button>
