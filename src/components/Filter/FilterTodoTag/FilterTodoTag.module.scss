@@ -3,5 +3,14 @@
 }
 
 .active-tag {
-  border-color: $border-focus;
+  border-color: $border-active;
+}
+
+.tag-button {
+  all: unset;
+  cursor: pointer;
+
+  &:focus .tag {
+    border: 1px solid $border-focus;
+  }
 }
