@@ -3,7 +3,7 @@
 }
 
 .active-tag {
-  border-color: $border-active;
+  border-color: $green;
 }
 
 .tag-button {
@@ -11,6 +11,7 @@
   cursor: pointer;
 
   &:focus .tag {
-    border: 1px solid $border-focus;
+    border: 1px dashed $border-focus;
+    //border-style: dashed;
   }
 }
