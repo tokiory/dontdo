@@ -16,6 +16,14 @@ const getFilteredTodoList = (todoList: TodoItem[], filters: TodoFilters) => {
     filteredTodoList = filteredTodoList.filter((item) => item.isDone);
   }
 
+  if (filters.tags.length > 0) {
+    for (const tag of filters.tags) {
+      filteredTodoList = filteredTodoList.filter((item) =>
+        item.meta.tags.some((itemTag) => itemTag.id === tag.id),
+      );
+    }
+  }
+
   return filteredTodoList;
 };
 
@@ -23,6 +31,7 @@ export const useTodoFilter = (todoList: TodoItem[]) => {
   const [filters, setFilters] = useState<TodoFilters>({
     sort: "desc",
     done: "initial",
+    tags: [],
   });
 
   const handleFilterChange = (changedFilters: Partial<TodoFilters>) => {

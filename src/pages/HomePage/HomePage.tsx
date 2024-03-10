@@ -1,5 +1,4 @@
-import { TodoTag } from "#types/todo.types.ts";
-import { Tag, Text } from "#ui";
+import { Text } from "#ui";
 import { KeyboardKey } from "#ui/KeyboardKey/KeyboardKey.tsx";
 import {
   TodoFilter,
@@ -7,7 +6,6 @@ import {
   TodoList,
   TodoListItem,
   TodoSearch,
-  TodoTagList,
 } from "@/components/Todo";
 import { TODO_LIST_KEY } from "@/data/localStorage.ts";
 import { useSearch } from "@/hooks/useSearch.ts";
@@ -42,11 +40,6 @@ export const HomePage = () => {
       }
     },
   );
-
-  const onTagClick = (tag: TodoTag) => {
-    setIsSearching(true);
-    setQuery(tag.name);
-  };
 
   // TODO: Make a redux store with all tags, and rework logic of creating, editing, and deleting tags
   const tagList = todoList
@@ -102,18 +95,9 @@ export const HomePage = () => {
   return (
     <div className={styles.page}>
       <div className={styles.wrapper}>
-        <TodoTagList>
-          {tagList.map((item) => (
-            <Tag
-              onClick={onTagClick}
-              key={item.name}
-              name={item.name}
-              id={item.id}
-            />
-          ))}
-        </TodoTagList>
         <TodoFilter
           {...filters}
+          tagList={tagList}
           className={styles.filters}
           onChange={handleFilterChange}
         />

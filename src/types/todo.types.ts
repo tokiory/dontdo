@@ -18,4 +18,5 @@ export interface TodoItemMeta {
 export interface TodoFilters {
   sort: "asc" | "desc";
   done: "onlyDone" | "notDone" | "initial";
+  tags: TodoTag[];
 }
