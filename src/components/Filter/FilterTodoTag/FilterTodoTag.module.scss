@@ -2,16 +2,15 @@
   display: flex;
 }
 
-.active-tag {
-  border-color: $green;
-}
-
 .tag-button {
   all: unset;
   cursor: pointer;
 
   &:focus .tag {
     border: 1px dashed $border-focus;
-    //border-style: dashed;
+  }
+
+  .active-tag, &:focus .active-tag {
+    border-color: $green
   }
 }

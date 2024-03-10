@@ -37,6 +37,7 @@ export const TodoFilter: FC<TodoFilterProps> = ({
     .filter((item, idx, arr) => {
       return arr.findIndex((tag) => tag.id === item.id) === idx;
     });
+
   const doneTodoItems = todoList.filter((item) => item.isDone);
 
   return (
