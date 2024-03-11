@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "target": "es2017",
+    "moduleResolution": "nodenext",
+    "baseUrl": ".",
+//    "paths": {
+//      "@/*": ["./src/*"],
+//    },
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx"
+  }
+}
