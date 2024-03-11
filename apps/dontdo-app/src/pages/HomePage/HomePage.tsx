@@ -1,3 +1,4 @@
+import { TodoItemMeta } from "#types/todo.types.ts";
 import { Text } from "#ui";
 import { KeyboardKey } from "#ui/KeyboardKey/KeyboardKey.tsx";
 import {
@@ -44,6 +45,28 @@ export const HomePage = () => {
   const { filters, filteredTodoList, handleFilterChange } =
     useTodoFilter(todoList);
 
+  const handleAddTodoItem = (text: string, meta: TodoItemMeta) => {
+    let itemTags = meta.tags;
+
+    // Add current active tags to the new item
+    if (filters.tags.length) {
+      itemTags.push(...filters.tags);
+      itemTags = itemTags.filter(
+        (tag, index) =>
+          index === itemTags.findIndex((item) => item.id === tag.id),
+      );
+    }
+
+    dispatchTodoList({
+      type: "add",
+      text,
+      meta: {
+        ...meta,
+        tags: itemTags,
+      },
+    });
+  };
+
   const handleDeleteDone = () => {
     todoList
       .filter((item) => item.isDone)
@@ -51,6 +74,7 @@ export const HomePage = () => {
         dispatchTodoList({ type: "delete", id });
       });
   };
+
   const searchedList = query.trim()
     ? filteredTodoList.filter(
         (item) =>
@@ -110,12 +134,7 @@ export const HomePage = () => {
               />
             </>
           ) : (
-            <TodoInput
-              onAdd={(text, meta) =>
-                dispatchTodoList({ type: "add", text, meta })
-              }
-              autoFocus
-            />
+            <TodoInput onAdd={handleAddTodoItem} autoFocus />
           )}
         </div>
         {!todoList.length ? (
