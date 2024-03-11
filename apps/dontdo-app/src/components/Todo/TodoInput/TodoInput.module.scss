@@ -15,8 +15,8 @@
   justify-content: center;
   cursor: pointer;
 
-  &:focus {
-    outline: 1px solid $black;
+  &:focus-visible {
+    outline: 2px solid $outline-focus;
     border-radius: 4px;
   }
 }

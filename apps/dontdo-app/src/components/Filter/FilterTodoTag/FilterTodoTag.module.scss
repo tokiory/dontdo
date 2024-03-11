@@ -6,11 +6,11 @@
   all: unset;
   cursor: pointer;
 
-  &:focus .tag {
-    border: 1px dashed $border-focus;
+  &:focus-visible .tag {
+    outline: 2px solid $outline-focus;
   }
 
-  .active-tag, &:focus .active-tag {
+  .active-tag {
     border-color: $green
   }
 }

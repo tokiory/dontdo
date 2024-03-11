@@ -9,8 +9,8 @@
   border: 1px solid $border;
   padding: 8px 12px;
 
-  &:focus {
-    border-color: $border-focus;
+  &:focus-visible {
+    outline: 2px solid $outline-focus;
   }
 
   &:hover {

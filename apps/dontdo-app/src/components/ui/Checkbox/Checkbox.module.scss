@@ -12,8 +12,8 @@
     border-color: $border-hover;
   }
 
-  &:has(.native-checkbox:focus) {
-    border-color: $border-focus;
+  &:has(.native-checkbox:focus-visible) {
+    outline: 2px solid $outline-focus;
   }
 }
 
