@@ -1,5 +1,5 @@
 import { Card, Checkbox, Tag, Text } from "#ui";
-import { TodoItem, TodoItemMeta } from "#types/todo.types";
+import { TodoItem } from "#types/todo.types";
 import { TodoTagList } from "@/components/Todo";
 import { useTodoInput } from "@/hooks/useTodoInput.ts";
 import { useTodoMeta } from "@/hooks/useTodoMeta.ts";
@@ -17,7 +17,7 @@ import styles from "./TodoListItem.module.scss";
 interface TodoListItemProps extends TodoItem {
   onDelete: (id: TodoItem["id"]) => void;
   onCheck: (id: TodoItem["id"], state: boolean) => void;
-  onEdit: (id: TodoItem["id"], text: string, meta: TodoItemMeta) => void;
+  onEdit: (item: TodoItem) => void;
 }
 
 export const TodoListItem: FC<TodoListItemProps> = ({
@@ -54,8 +54,7 @@ export const TodoListItem: FC<TodoListItemProps> = ({
     setEditingMeta(editedMeta);
 
     const sanitizedText = getSanitizedText(value).trim();
-    onEdit(id, sanitizedText, editedMeta);
-    // onEdit(id, value, meta);
+    onEdit({ id, text: sanitizedText, meta: editedMeta, isDone });
   };
 
   const handleEditKeydown: KeyboardEventHandler<HTMLTextAreaElement> = (

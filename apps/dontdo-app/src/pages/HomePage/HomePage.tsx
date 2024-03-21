@@ -9,11 +9,18 @@ import {
   TodoSearch,
 } from "@/components/Todo";
 import { TODO_LIST_KEY } from "@/data/localStorage.ts";
+import { useAppDispatch } from "@/hooks/useAppDispatch.ts";
+import { useAppSelector } from "@/hooks/useAppSelector.ts";
+import {
+  todoAdded,
+  todoUpdated,
+  todoDeleted,
+  todoChecked,
+} from "@/features/todo/todoSlice.ts";
 import { useSearch } from "@/hooks/useSearch.ts";
 import { useTodoFilter } from "@/hooks/useTodoFilter.ts";
-import { todoReducer } from "@/reducers/todoReducer.ts";
 import { Icon } from "@iconify/react";
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./HomePage.module.scss";
 
 export const HomePage = () => {
@@ -28,19 +35,8 @@ export const HomePage = () => {
     [isSearching, setQuery],
   );
 
-  const [todoList, dispatchTodoList] = useReducer(
-    todoReducer,
-    [],
-    (initial) => {
-      try {
-        return JSON.parse(
-          localStorage.getItem(TODO_LIST_KEY) || JSON.stringify(initial),
-        );
-      } catch {
-        return initial;
-      }
-    },
-  );
+  const dispatch = useAppDispatch();
+  const todoList = useAppSelector((state) => state.todo.list);
 
   const { filters, filteredTodoList, handleFilterChange } =
     useTodoFilter(todoList);
@@ -57,21 +53,14 @@ export const HomePage = () => {
       );
     }
 
-    dispatchTodoList({
-      type: "add",
-      text,
-      meta: {
-        ...meta,
-        tags: itemTags,
-      },
-    });
+    dispatch(todoAdded({ text, meta: { ...meta, tags: itemTags } }));
   };
 
   const handleDeleteDone = () => {
     todoList
       .filter((item) => item.isDone)
       .forEach(({ id }) => {
-        dispatchTodoList({ type: "delete", id });
+        dispatch(todoDeleted(id));
       });
   };
 
@@ -149,12 +138,10 @@ export const HomePage = () => {
               <TodoListItem
                 {...item}
                 onCheck={(id, state) =>
-                  dispatchTodoList({ type: "check", id, isDone: state })
+                  dispatch(todoChecked({ id, isDone: state }))
                 }
-                onEdit={(id, text, meta) =>
-                  dispatchTodoList({ type: "edit", id, text, meta })
-                }
-                onDelete={(id) => dispatchTodoList({ type: "delete", id })}
+                onEdit={(item) => dispatch(todoUpdated(item))}
+                onDelete={(id) => dispatch(todoDeleted(id))}
                 key={item.id}
               />
             ))}

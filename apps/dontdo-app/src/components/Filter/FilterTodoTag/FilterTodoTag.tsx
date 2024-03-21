@@ -1,4 +1,5 @@
-import { TodoFilters, TodoTag } from "#types/todo.types.ts";
+import { TodoFilters } from "#types/todo.types.ts";
+import { Tag as ITag } from "#types/tag.types.ts";
 import { Tag } from "#ui";
 import { TodoTagList } from "@/components/Todo";
 import { clsx } from "clsx";
@@ -7,7 +8,7 @@ import styles from "./FilterTodoTag.module.scss";
 
 interface FilterTodoTag {
   className?: string;
-  tags: TodoTag[];
+  tags: ITag[];
   activeTags: TodoFilters["tags"];
   onTagToggle: (tags: Pick<TodoFilters, "tags">) => void;
 }
@@ -18,7 +19,7 @@ export const FilterTodoTag: FC<FilterTodoTag> = ({
   tags,
   activeTags,
 }) => {
-  const onTagSelect = (tag: TodoTag) => {
+  const onTagSelect = (tag: ITag) => {
     if (activeTags.some((activeTag) => activeTag.id === tag.id)) {
       onTagToggle({
         tags: activeTags.filter((activeTag) => activeTag.id !== tag.id),

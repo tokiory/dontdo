@@ -1,7 +1,8 @@
 /*
  * This hook is needed to process meta information for the Todo unit
  */
-import { TodoItemMeta, TodoTag } from "#types/todo.types.ts";
+import { TodoItemMeta } from "#types/todo.types.ts";
+import { Tag } from "#types/tag.types.ts";
 import { useState } from "react";
 
 const INITIAL_META: TodoItemMeta = Object.freeze({
@@ -22,7 +23,7 @@ export const useTodoMeta = () => {
     return result.replaceAll(/\s+/g, " ");
   };
 
-  const updateTags = (tags: TodoTag[]) => {
+  const updateTags = (tags: Tag[]) => {
     setMeta((meta) => ({
       ...meta,
       tags,

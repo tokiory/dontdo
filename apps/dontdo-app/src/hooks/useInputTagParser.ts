@@ -1,4 +1,4 @@
-import { TodoTag } from "#types/todo.types.ts";
+import {Tag} from "#types/tag.types.ts";
 
 interface TagToken {
   cursorRange: [number, number];
@@ -18,19 +18,19 @@ const discoverTags = (value: string): TagToken[] => {
   });
 };
 
-const parseTags = (value: string): TodoTag[] => {
+const parseTags = (value: string): Tag[] => {
   const tagTokens = discoverTags(value);
   return tagTokens.map((token) => createTag(token.name));
 };
 
-const createTag = (name: string): TodoTag => {
+const createTag = (name: string): Tag => {
   return {
     name,
     id: `tag-${name}`,
   };
 };
 
-const transfromTokenToTag = (token: TagToken): TodoTag => {
+const transfromTokenToTag = (token: TagToken): Tag => {
   return createTag(token.name);
 };
 

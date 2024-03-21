@@ -1,4 +1,4 @@
-import { TodoTag } from "#types/todo.types.ts";
+import {Tag} from "#types/tag.types.ts";
 import { useInputTagParser } from "@/hooks/useInputTagParser.ts";
 
 export const useTodoInput = () => {
@@ -10,7 +10,7 @@ export const useTodoInput = () => {
     return sanitizedText;
   };
 
-  const getParsedTags = (value: string): TodoTag[] => {
+  const getParsedTags = (value: string): Tag[] => {
     const tagTokens = discoverTags(value);
     const tags = tagTokens.map((token) => transfromTokenToTag(token));
     return tags.filter(

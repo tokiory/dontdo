@@ -1,3 +1,5 @@
+import { Tag } from "#types/tag.types.ts";
+
 export interface TodoItem {
   id: string;
   text: string;
@@ -5,18 +7,13 @@ export interface TodoItem {
   meta: TodoItemMeta;
 }
 
-export interface TodoTag {
-  id: string;
-  name: string;
-}
-
 export interface TodoItemMeta {
   notification: Date | null;
-  tags: TodoTag[];
+  tags: Pick<Tag, "id">[];
 }
 
 export interface TodoFilters {
   sort: "asc" | "desc";
   done: "onlyDone" | "notDone" | "initial";
-  tags: TodoTag[];
+  tags: Tag[];
 }
